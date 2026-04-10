@@ -1,0 +1,133 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schema/2024-11-05/schema.json",
+  "mcpServers": {
+    "deerflow-governance": {
+      "description": "Deerflow Agent Governance - Enforces strict coding standards, safety rules, and quality gates for AI coding agents",
+      "version": "1.0.0",
+      "tools": [
+        {
+          "name": "check_rule_violation",
+          "description": "Check if a code change violates any Deerflow rule",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "code": { "type": "string", "description": "The code to check" },
+              "language": { "type": "string", "enum": ["typescript", "javascript", "python", "go", "rust"], "description": "Programming language" },
+              "context": { "type": "string", "description": "Context: production, test, etc." }
+            },
+            "required": ["code", "language"]
+          }
+        },
+        {
+          "name": "verify_library",
+          "description": "Verify that a library/package exists and check compatibility before using it",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "package_name": { "type": "string", "description": "Name of the npm/pypi package" },
+              "registry": { "type": "string", "enum": ["npm", "pypi", "crates"], "description": "Package registry" },
+              "version": { "type": "string", "description": "Specific version to check" }
+            },
+            "required": ["package_name", "registry"]
+          }
+        },
+        {
+          "name": "verify_import",
+          "description": "Verify that an import path is valid for a given package",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "package_name": { "type": "string", "description": "The package the import is from" },
+              "import_path": { "type": "string", "description": "The import path to verify" }
+            },
+            "required": ["package_name", "import_path"]
+          }
+        },
+        {
+          "name": "get_coding_standard",
+          "description": "Get the Deerflow coding standard for a specific topic",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "topic": {
+                "type": "string",
+                "enum": ["naming", "types", "error-handling", "state-management", "testing", "security", "performance", "accessibility", "file-structure", "api-design"],
+                "description": "The coding standard topic"
+              }
+            },
+            "required": ["topic"]
+          }
+        },
+        {
+          "name": "quality_gate_check",
+          "description": "Run quality gate checks on the current project state",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "gates": {
+                "type": "array",
+                "items": { "type": "string", "enum": ["safety", "types", "lint", "tests", "build", "security", "dependencies"] },
+                "description": "Which quality gates to check"
+              },
+              "project_path": { "type": "string", "description": "Path to the project directory" }
+            },
+            "required": ["gates"]
+          }
+        },
+        {
+          "name": "get_workflow_step",
+          "description": "Get the current workflow step requirements and checklist",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "step": {
+                "type": "string",
+                "enum": ["comprehend", "investigate", "plan", "cross-check", "implement", "test", "validate", "document", "report"],
+                "description": "The Deerflow workflow step"
+              }
+            },
+            "required": ["step"]
+          }
+        },
+        {
+          "name": "file_safety_check",
+          "description": "Check if a file operation is safe before performing it",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "operation": { "type": "string", "enum": ["create", "modify", "delete", "rename", "move"], "description": "The file operation" },
+              "file_path": { "type": "string", "description": "Path to the file/directory" },
+              "reason": { "type": "string", "description": "Why this operation is being performed" }
+            },
+            "required": ["operation", "file_path", "reason"]
+          }
+        },
+        {
+          "name": "log_work",
+          "description": "Log work to the Deerflow worklog for session continuity",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "action": { "type": "string", "description": "What action was performed" },
+              "files_affected": { "type": "array", "items": { "type": "string" }, "description": "List of files affected" },
+              "result": { "type": "string", "enum": ["success", "failure", "partial"], "description": "Result of the action" },
+              "notes": { "type": "string", "description": "Additional notes or context" }
+            },
+            "required": ["action", "files_affected", "result"]
+          }
+        }
+      ],
+      "resources": [
+        { "uri": "deerflow://rules/agent-rules", "name": "Agent Rules", "description": "Complete Deerflow agent rule classification and enforcement" },
+        { "uri": "deerflow://workflow/engine", "name": "Workflow Engine", "description": "Deerflow Agentic Workflow pipeline with phase gates" },
+        { "uri": "deerflow://standards/coding", "name": "Coding Standards", "description": "Language-agnostic coding standards and patterns" },
+        { "uri": "deerflow://gates/quality", "name": "Quality Gates", "description": "Quality gate thresholds and scoring definitions" }
+      ],
+      "prompts": [
+        { "name": "deerflow-start", "description": "Initialize Deerflow workflow for a new task", "arguments": [{ "name": "task_description", "description": "The task the user wants to accomplish", "required": true }] },
+        { "name": "deerflow-review", "description": "Run Deerflow self-review on recent code changes", "arguments": [] },
+        { "name": "deerflow-verify", "description": "Verify a technical decision against Deerflow standards", "arguments": [{ "name": "decision", "description": "The technical decision to verify", "required": true }] }
+      ]
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "$schema": "https://windsurf.com/settings-schema.json",
+  "rules": [
+    {
+      "description": "DEERFLOW AGENT FRAMEWORK — MANDATORY RULES FOR ALL AI AGENTS",
+      "priority": 999,
+      "alwaysApply": true
+    },
+    {
+      "description": "Before any code change: read task 3x, research, plan, then implement. NEVER skip steps.",
+      "glob": "**/*.{ts,tsx,js,jsx,py,go,rs}",
+      "priority": 100
+    },
+    {
+      "description": "NEVER delete files or directories unless explicitly requested by the user.",
+      "glob": "**/*",
+      "priority": 100
+    },
+    {
+      "description": "NEVER use 'any' type in TypeScript. Use proper types or 'unknown' with type guards.",
+      "glob": "**/*.{ts,tsx}",
+      "priority": 100
+    },
+    {
+      "description": "NEVER use mock/hardcoded data in production code. Mocks only in test files.",
+      "glob": "**/*.{ts,tsx,js,jsx}",
+      "priority": 100
+    },
+    {
+      "description": "NEVER use eval(), innerHTML, or dangerouslySetInnerHTML without explicit justification.",
+      "glob": "**/*.{ts,tsx,js,jsx,html}",
+      "priority": 100
+    },
+    {
+      "description": "NEVER fabricate library APIs, import paths, or package names. Verify everything.",
+      "glob": "**/*.{ts,tsx,js,jsx,py}",
+      "priority": 100
+    },
+    {
+      "description": "EVERY function must have proper error handling. No empty catch blocks.",
+      "glob": "**/*.{ts,tsx,js,jsx,py}",
+      "priority": 90
+    },
+    {
+      "description": "EVERY loop must have a clear termination condition. Every recursion must have a base case.",
+      "glob": "**/*.{ts,tsx,js,jsx,py}",
+      "priority": 90
+    },
+    {
+      "description": "Test files must be named *.test.ts, *.spec.ts, or *__tests__/*.",
+      "glob": "**/*.test.{ts,tsx,js,jsx}",
+      "priority": 80
+    },
+    {
+      "description": "Production code must not contain console.log statements.",
+      "glob": "src/**/*.{ts,tsx,js,jsx}",
+      "priority": 80
+    },
+    {
+      "description": "No TODO, FIXME, or HACK comments in new code. Complete the implementation.",
+      "glob": "src/**/*.{ts,tsx,js,jsx}",
+      "priority": 80
+    },
+    {
+      "description": "Use kebab-case for file names and directories.",
+      "glob": "**/*",
+      "priority": 70
+    }
+  ]
+}
