@@ -24,7 +24,7 @@
 
 ```bash
 cd your-project
-git clone https://github.com/YOUR_USER/deerflow-agent-framework.git /tmp/deerflow
+git clone https://github.com/ntd25022006q/deerflow---agent---framework.git /tmp/deerflow
 cp -r /tmp/deerflow/. .
 rm -rf /tmp/deerflow
 bash scripts/setup.sh
@@ -82,21 +82,31 @@ deerflow-agent-framework/
 │   │   └── architecture.md               # System design & patterns
 │   ├── hooks/
 │   │   └── pre-commit/
-│   │       ├── validate-safety.sh        # File safety validator
+│   │       ├── validate-safety.sh        # File safety validator (8 checks)
 │   │       └── validate-quality.sh       # Code quality validator
 │   ├── algorithms/
-│   │   └── decision-engine.md            # Agent decision algorithms
+│   │   └── decision-engine.md            # 7 decision algorithms
 │   ├── mcp/
-│   │   └── mcp-config.json               # MCP server configuration
-│   ├── templates/
-│   │   └── worklog-template.md           # Session worklog template
-│   └── logs/                             # Auto-generated worklogs
+│   │   └── mcp-config.json               # MCP server (8 tools)
+│   └── templates/
+│       └── worklog-template.md           # Session worklog template
 ├── scripts/
 │   ├── setup.sh                          # One-command installation
 │   ├── validate.sh                       # Project health check
 │   └── uninstall.sh                      # Clean removal
+├── tests/
+│   ├── test_pre_commit_safety.py         # 52 pytest tests (real git ops)
+│   ├── test_config_validation.py         # 24 pytest tests (JSON Schema)
+│   └── run-shell-tests.sh               # 58 shell integration tests
 └── docs/
-    └── (documentation)
+    ├── TEST_REPORT.md                   # Detailed test report
+    ├── deerflow_terminal_pytest_results.png
+    ├── deerflow_terminal_precommit_demo.png
+    ├── deerflow_project_dashboard.png
+    ├── deerflow_chart1_test_suite_results.png
+    ├── deerflow_chart2_framework_comparison.png
+    ├── deerflow_chart3_time_breakdown.png
+    └── deerflow_chart4_comparison_matrix.png
 ```
 
 ---
@@ -110,7 +120,7 @@ deerflow-agent-framework/
 cd your-existing-project
 
 # 2. Clone Deerflow to a temp directory
-git clone https://github.com/YOUR_USER/deerflow-agent-framework.git /tmp/deerflow
+git clone https://github.com/ntd25022006q/deerflow---agent---framework.git /tmp/deerflow
 
 # 3. Copy all Deerflow files into your project
 cp /tmp/deerflow/.cursorrules .
@@ -135,7 +145,7 @@ bash scripts/validate.sh
 
 ```bash
 cd your-project && \
-git clone https://github.com/YOUR_USER/deerflow-agent-framework.git /tmp/deerflow && \
+git clone https://github.com/ntd25022006q/deerflow---agent---framework.git /tmp/deerflow && \
 cp -r /tmp/deerflow/. . && \
 rm -rf /tmp/deerflow/.git && \
 bash scripts/setup.sh && \
@@ -147,7 +157,7 @@ bash scripts/validate.sh
 
 ```bash
 cd your-project
-git submodule add https://github.com/YOUR_USER/deerflow-agent-framework.git deerflow-framework
+git submodule add https://github.com/ntd25022006q/deerflow-agent-framework.git deerflow-framework
 cp deerflow-framework/.cursorrules .
 cp deerflow-framework/CLAUDE.md .
 cp deerflow-framework/AGENTS.md .
@@ -293,9 +303,50 @@ MIT License — Use freely in any project, personal or commercial.
 
 ---
 
-## ⭐ Star This Repo
+## 🧪 Test Evidence (Real Execution — No Mock Data)
 
-If Deerflow saves your projects from AI-generated chaos, give it a star! It helps other developers discover a better way to work with AI agents.
+All tests run on real files, real git operations, real pre-commit hooks. Zero simulation.
+
+| Suite | Tests | Time | Result |
+|-------|-------|------|--------|
+| Safety Pre-commit Hooks (pytest) | 52 | 3.01s | ✅ ALL PASSED |
+| Config & JSON Schema (pytest) | 24 | 1.21s | ✅ ALL PASSED |
+| Shell Integration (bash) | 58 | 0.40s | ✅ ALL PASSED |
+| **Total** | **134** | **6.56s** | **100% Pass Rate** |
+
+### Terminal Screenshots
+
+**Pytest Results (76 tests):**
+
+<img src="docs/deerflow_terminal_pytest_results.png" width="700" />
+
+**Pre-commit Hook Blocking Real Violations:**
+
+<img src="docs/deerflow_terminal_precommit_demo.png" width="700" />
+
+### Visual Analytics
+
+**Test Suite Results:**
+
+<img src="docs/deerflow_chart1_test_suite_results.png" width="600" />
+
+**Framework Capability Comparison (Radar):**
+
+<img src="docs/deerflow_chart2_framework_comparison.png" width="550" />
+
+**Execution Time Breakdown:**
+
+<img src="docs/deerflow_chart3_time_breakdown.png" width="700" />
+
+**Feature Comparison Matrix:**
+
+<img src="docs/deerflow_chart4_comparison_matrix.png" width="800" />
+
+### Project Dashboard
+
+<img src="docs/deerflow_project_dashboard.png" width="700" />
+
+> Full technical report with all metrics: [`docs/TEST_REPORT.md`](docs/TEST_REPORT.md)
 
 ---
 
